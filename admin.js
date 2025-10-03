@@ -86,4 +86,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // הרצה ראשונית למילוי הטופס
     populateForm();
+    document.getElementById('customTimesSheetUrl').value = config.customTimesSheetUrl || '';
+document.getElementById('announcementsSheetUrl').value = config.announcementsSheetUrl || '';
 });
