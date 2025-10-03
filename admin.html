@@ -32,20 +32,26 @@
         </fieldset>
         
         <fieldset>
-            <legend>מיקום</legend>
-            <div class="form-group">
-                <label for="latitude">קו רוחב (Latitude):</label>
-                <input type="number" step="any" id="latitude" required>
-            </div>
-            <div class="form-group">
-                <label for="longitude">קו אורך (Longitude):</label>
-                <input type="number" step="any" id="longitude" required>
-            </div>
-            <div class="form-group">
-                <label for="timezone">אזור זמן (לדוגמה: Asia/Jerusalem):</label>
-                <input type="text" id="timezone" required>
-            </div>
-        </fieldset>
+    <legend>מיקום</legend>
+    <div class="form-group">
+        <label for="address">הזן כתובת מלאה ולחץ על "איתור":</label>
+        <input type="text" id="address" placeholder="לדוגמה: רחוב יפו 97, ירושלים">
+        <button type="button" id="geocode-btn" style="margin-top: 5px;">איתור מיקום</button>
+        <p id="geocode-status" style="font-size: 0.9em;"></p>
+    </div>
+    <div class="form-group">
+        <label for="latitude">קו רוחב (Latitude) - מתעדכן אוטומטית:</label>
+        <input type="number" step="any" id="latitude" required readonly>
+    </div>
+    <div class="form-group">
+        <label for="longitude">קו אורך (Longitude) - מתעדכן אוטומטית:</label>
+        <input type="number" step="any" id="longitude" required readonly>
+    </div>
+    <div class="form-group">
+        <label for="timezone">אזור זמן (לדוגמה: Asia/Jerusalem):</label>
+        <input type="text" id="timezone" required>
+    </div>
+</fieldset>
 
         <fieldset>
             <legend>זמני היום להצגה</legend>
