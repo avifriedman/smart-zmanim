@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>ממשק ניהול - לוח זמנים</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; max-width: 800px; margin: auto; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input[type="text"], input[type="number"] { width: 100%; padding: 8px; box-sizing: border-box; }
+        .checkbox-group label { display: inline-block; margin-left: 10px; }
+        fieldset { border: 1px solid #ccc; padding: 10px; margin-bottom: 20px; }
+        legend { font-weight: bold; font-size: 1.2em; }
+        button { background: #007bff; color: white; padding: 10px 20px; border: none; cursor: pointer; font-size: 1.1em; }
+        textarea { width: 100%; height: 300px; direction: ltr; text-align: left; margin-top: 20px; }
+        .instructions { background: #f0f0f0; padding: 15px; border-radius: 5px; border-right: 5px solid #007bff; }
+    </style>
+</head>
+<body>
+    <h1>ממשק ניהול ללוח זמנים</h1>
+    <p class="instructions">
+        <strong>הוראות:</strong> מלא את כל השדות, לחץ על "צור קוד הגדרות", העתק את כל הקוד שיופיע בתיבה למטה והדבק אותו בקובץ <code>config.js</code> במאגר ה-GitHub שלך.
+    </p>
+    
+    <form id="config-form">
+        <fieldset>
+            <legend>הגדרות כלליות</legend>
+            <div class="form-group">
+                <label for="synagogueName">שם בית הכנסת:</label>
+                <input type="text" id="synagogueName" required>
+            </div>
+        </fieldset>
+        
+        <fieldset>
+            <legend>מיקום</legend>
+            <div class="form-group">
+                <label for="latitude">קו רוחב (Latitude):</label>
+                <input type="number" step="any" id="latitude" required>
+            </div>
+            <div class="form-group">
+                <label for="longitude">קו אורך (Longitude):</label>
+                <input type="number" step="any" id="longitude" required>
+            </div>
+            <div class="form-group">
+                <label for="timezone">אזור זמן (לדוגמה: Asia/Jerusalem):</label>
+                <input type="text" id="timezone" required>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>זמני היום להצגה</legend>
+            <div class="checkbox-group">
+                <input type="checkbox" id="alotHaShachar"><label for="alotHaShachar">עלות השחר</label>
+                <input type="checkbox" id="netzHaChama"><label for="netzHaChama">הנץ החמה</label>
+                <input type="checkbox" id="sofZmanShma"><label for="sofZmanShma">סוף זמן ק"ש</label>
+                <input type="checkbox" id="sofZmanTfilla"><label for="sofZmanTfilla">סוף זמן תפילה</label>
+                <input type="checkbox" id="chatzot"><label for="chatzot">חצות היום</label>
+                <input type="checkbox" id="minchaGedola"><label for="minchaGedola">מנחה גדולה</label>
+                <input type="checkbox" id="plagHaMincha"><label for="plagHaMincha">פלג המנחה</label>
+                <input type="checkbox" id="shkia"><label for="shkia">שקיעה</label>
+                <input type="checkbox" id="tzeitHaKochavim"><label for="tzeitHaKochavim">צאת הכוכבים</label>
+            </div>
+        </fieldset>
+        
+        <fieldset>
+            <legend>זמני תפילות</legend>
+            <h4>יום חול</h4>
+            <div class="form-group"><label for="wd-shacharit">שחרית:</label><input type="text" id="wd-shacharit" placeholder="HH:MM"></div>
+            <div class="form-group"><label for="wd-mincha">מנחה:</label><input type="text" id="wd-mincha" placeholder="HH:MM"></div>
+            <div class="form-group"><label for="wd-arvit">ערבית:</label><input type="text" id="wd-arvit" placeholder="HH:MM"></div>
+            <h4>שבת</h4>
+            <div class="form-group"><label for="sh-minchaErev">דקות לפני הדלקת נרות למנחה (מספר שלילי):</label><input type="number" id="sh-minchaErev"></div>
+            <div class="form-group"><label for="sh-shacharit">שחרית:</label><input type="text" id="sh-shacharit" placeholder="HH:MM"></div>
+            <div class="form-group"><label for="sh-mincha">מנחה:</label><input type="text" id="sh-mincha" placeholder="HH:MM"></div>
+            <div class="form-group"><label for="sh-arvitMotzash">דקות אחרי צאת השבת לערבית (מספר חיובי):</label><input type="number" id="sh-arvitMotzash"></div>
+        </fieldset>
+
+        <button type="button" id="generate-btn">צור קוד הגדרות</button>
+    </form>
+
+    <textarea id="output-code" readonly></textarea>
+
+    <script src="config.js"></script>
+    <script src="admin.js"></script>
+</body>
+</html>
