@@ -1,3 +1,33 @@
+document.getElementById('geocode-btn').addEventListener('click', async () => {
+    const address = document.getElementById('address').value;
+    const statusEl = document.getElementById('geocode-status');
+    if (!address) {
+        statusEl.textContent = 'יש להזין כתובת לחיפוש.';
+        return;
+    }
+
+    statusEl.textContent = 'מחפש...';
+    const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(address)}&format=json&limit=1`;
+
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+
+        if (data && data.length > 0) {
+            const location = data[0];
+            document.getElementById('latitude').value = location.lat;
+            document.getElementById('longitude').value = location.lon;
+            statusEl.textContent = `נמצא: ${location.display_name}`;
+            // נניח שכל כתובת בישראל היא באזור הזמן של ירושלים
+            document.getElementById('timezone').value = 'Asia/Jerusalem'; 
+        } else {
+            statusEl.textContent = 'הכתובת לא נמצאה. נסה לפרט יותר.';
+        }
+    } catch (error) {
+        statusEl.textContent = 'שגיאה באיתור המיקום. בדוק חיבור לאינטרנט.';
+        console.error('Geocoding error:', error);
+    }
+});
 document.addEventListener('DOMContentLoaded', () => {
     // פונקציה למילוי הטופס עם הנתונים הקיימים מקובץ ההגדרות
     function populateForm() {
